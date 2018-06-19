@@ -9,7 +9,7 @@ Mesh line (const glm::vec3 &_a, const glm::vec3 &_b) {
     mesh.addVertices(linePoints,2);
     mesh.setDrawMode(GL_LINES);
     return mesh;
-};
+}
 
 void drawLine(const glm::vec3 &_a, const glm::vec3 &_b){
 
@@ -27,7 +27,7 @@ void drawLine(const glm::vec3 &_a, const glm::vec3 &_b){
 
     glEnableVertexAttribArray ( 0 );
     glDrawArrays(GL_LINES, 0, 2);
-};
+}
 
 Mesh cross (const glm::vec3 &_pos, float _width) {
 	glm::vec3 linePoints[4] = {glm::vec3(_pos.x,_pos.y,_pos.z),
