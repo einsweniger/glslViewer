@@ -117,7 +117,7 @@ bool Shader::load(const std::string& _fragmentSrc, const std::string& _vertexSrc
 #endif
 #ifdef GL_PROGRAM_INSTRUCTIONS_ARB
             GLint icount = 0;
-            glGetProgramivARB(m_program, GL_PROGRAM_INSTRUCTIONS_ARB, &icount);
+            glGetProgramiv(m_program, GL_PROGRAM_INSTRUCTIONS_ARB, &icount);
             if (icount > 0)
                 std::cerr << " #instructions: " << icount;
 #endif
