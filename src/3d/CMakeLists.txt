@@ -1,0 +1,1 @@
+add_library(3d node.cpp camera.cpp)

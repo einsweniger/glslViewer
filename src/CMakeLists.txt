@@ -1,0 +1,6 @@
+add_subdirectory(3d)
+add_subdirectory(gl)
+add_subdirectory(tools)
+add_subdirectory(types)
+add_subdirectory(ui)
+add_subdirectory(inspect)

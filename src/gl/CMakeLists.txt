@@ -1,0 +1,1 @@
+add_library(gl fbo.cpp pingpong.cpp shader.cpp texture.cpp uniform.cpp vbo.cpp vertexLayout.cpp)

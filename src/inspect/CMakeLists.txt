@@ -1,0 +1,1 @@
+add_library(inspect BasicInterface.cpp ProgramInspector.cpp types.cpp)

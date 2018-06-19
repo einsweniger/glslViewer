@@ -1,0 +1,1 @@
+add_library(objloader tiny_obj_loader.cc)
