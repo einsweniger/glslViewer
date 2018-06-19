@@ -23,6 +23,8 @@
 
 #include "ui/cursor.h"
 
+#include "inspect/ProgramInspector.h"
+
 // GLOBAL VARIABLES
 //============================================================================
 //
@@ -53,7 +55,7 @@ const std::string* fragPath = nullptr;
 int iVert = -1;
 std::string vertSource = "";
 const std::string* vertPath = nullptr;
-bool verbose = false;
+bool verbose = true;
 
 //  CAMERA
 Camera cam;
@@ -91,6 +93,10 @@ std::vector<std::string> include_folders;
 PingPong buffer;
 Vbo* buffer_vbo;
 Shader buffer_shader;
+
+// Inspector
+
+std::unique_ptr<minuseins::ProgramInspector> inspect;
 
 //================================================================= Threads
 void fileWatcherThread();
@@ -550,6 +556,8 @@ void setup() {
 
     shader.load(fragSource, vertSource, defines, verbose);
 
+    inspect = std::make_unique<minuseins::ProgramInspector>(shader.getProgram());
+    inspect->initialize();
     cam.setViewport(getWindowWidth(), getWindowHeight());
     cam.setPosition(glm::vec3(0.0,0.0,-3.));
 
