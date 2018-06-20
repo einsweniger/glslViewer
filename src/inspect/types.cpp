@@ -2,8 +2,9 @@
 // Created by bone on 14.04.18.
 //
 
-#include <imgui.h>
+#include <imgui/imgui.h>
 #include <sstream>
+#include <gl/strings.h>
 #include "types.h"
 
 namespace minuseins::interfaces::types {
@@ -15,10 +16,10 @@ namespace minuseins::interfaces::types {
             tooltip << "resource properties:\n";
             for(auto prop : props) {
                 if(GL_TYPE == prop.first) {
-//                    tooltip << glbinding::aux::Meta::getString(prop.first) << ": "
-//                            << interfaces::types::toString(prop.second).c_str() << "\n";
+                    tooltip << getString(prop.first) << ": "
+                            << getString(prop.second) << "\n";
                 } else {
-//                    tooltip << glbinding::aux::Meta::getString(prop.first) << ": "<< prop.second << "\n";
+                    tooltip << getString(prop.first) << ": "<< prop.second << "\n";
                 }
             }
             tooltip << extra_text;

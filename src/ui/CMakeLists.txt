@@ -1,1 +1,1 @@
-add_library(ui cursor.cpp)
+add_library(ui cursor.cpp imgui_impl_glfw_gl3.cpp)

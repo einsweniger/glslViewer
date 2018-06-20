@@ -97,6 +97,9 @@ Shader buffer_shader;
 // Inspector
 
 std::unique_ptr<minuseins::ProgramInspector> inspect;
+bool draw_inspect = true;
+
+//TODO hook in ImGui
 
 //================================================================= Threads
 void fileWatcherThread();
@@ -679,6 +682,7 @@ void draw() {
         screenshot(screenshotFile);
         screenshotFile = "";
     }
+    inspect->draw_gui(&draw_inspect);
 }
 
 // Rendering Thread

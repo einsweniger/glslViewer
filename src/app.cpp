@@ -4,6 +4,8 @@
 #include <sys/time.h>
 #include "glm/gtc/matrix_transform.hpp"
 #include "tools/text.h"
+#include <imgui/imgui.h>
+#include "ui/imgui_impl_glfw_gl3.h"
 
 // Common global variables
 //----------------------------------------------------
@@ -309,7 +311,15 @@ void initGL (glm::ivec4 &_viewport, bool _headless) {
         });
 
         glfwSwapInterval(1);
-    #endif
+      // Setup Dear ImGui binding
+      IMGUI_CHECKVERSION();
+      ImGui::CreateContext();
+      ImGuiIO& io = ImGui::GetIO(); (void)io;
+      io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+      //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
+      ImGui_ImplGlfwGL3_Init(window, true);
+
+#endif
 }
 
 bool isGL(){
@@ -434,6 +444,7 @@ void updateGL(){
 
         // OSX/LINUX
         glfwPollEvents();
+        ImGui_ImplGlfwGL3_NewFrame();
     #endif
 }
 
@@ -443,6 +454,9 @@ void renderGL(){
         eglSwapBuffers(display, surface);
     #else
         // OSX/LINUX
+        ImGui::Render();
+        ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
+
         glfwSwapBuffers(window);
     #endif
 }
@@ -461,6 +475,9 @@ void closeGL(){
         bcm_host_deinit();
     #else
         // OSX/LINUX
+        ImGui_ImplGlfwGL3_Shutdown();
+        ImGui::DestroyContext();
+
         glfwSetWindowShouldClose(window, GL_TRUE);
         glfwTerminate();
     #endif

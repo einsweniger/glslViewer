@@ -12,7 +12,6 @@ find_package(OpenGL REQUIRED)
 find_package(Threads REQUIRED)
 
 include_directories(include)
-include_directories(include/imgui)
 include_directories(src)
 
 add_library(imgui STATIC include/imgui/imgui.cpp include/imgui/imgui_demo.cpp include/imgui/imgui_draw.cpp)
@@ -23,4 +22,4 @@ add_subdirectory(src)
 
 add_executable(glslViewer src/app.cpp src/main.cpp)
 
-target_link_libraries(glslViewer 3d gl tools types ui inspect imgui OpenGL::OpenGL glfw objloader ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(glslViewer 3d inspect gl tools types ui imgui OpenGL::OpenGL glfw objloader ${CMAKE_THREAD_LIBS_INIT})

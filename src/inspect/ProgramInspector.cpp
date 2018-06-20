@@ -2,12 +2,13 @@
 // Created by bone on 09.03.18.
 //
 
-#include <imgui.h>
+#include <imgui/imgui.h>
 #include <iostream>
 #include <sstream>
 #include "ProgramInspector.h"
 
 #include "BasicInterface.h"
+#include "gl/strings.h"
 
 namespace minuseins {
     ProgramInspector::ProgramInspector(GLuint programId, const std::string& name) :
@@ -50,7 +51,7 @@ namespace minuseins {
                 GLint count;
                 glGetProgramInterfaceiv(programId_, interface, GL_ACTIVE_RESOURCES, &count);
                 if(0 >= count) continue;
-                //ImGui::BulletText("%s: %d", glbinding::aux::Meta::getString(interface).c_str(), count);
+                ImGui::BulletText("%s: %d", getString(interface).c_str(), count);
             }
             ImGui::EndTooltip();
         }
@@ -59,8 +60,8 @@ namespace minuseins {
             for(auto& interface : draw_interfaces) {
                 if(containers.at(interface).empty()) continue;
 
-                //std::string interface_str = glbinding::aux::Meta::getString(interface);
-                std::string interface_str = "INTERFACE_PLACEHOLDER";
+                std::string interface_str = getString(interface);
+                //std::string interface_str = "INTERFACE_PLACEHOLDER";
                 ImGui::Begin(interface_str.c_str());
                 ImGui::PushID(name.c_str());
                 ImGui::Separator();
